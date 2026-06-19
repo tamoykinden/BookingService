@@ -19,10 +19,19 @@ class Settings(BaseSettings):
 
     @property
     def db_url(self) -> str:
-        """Формирует URL для подключения к PostgreSQL."""
+        """Формирует синхронный URL для подключения к PostgreSQL."""
 
         return (
             f'postgresql://{self.DB_USER}:{self.DB_PASS}'
+            f'@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}'
+        )
+
+    @property
+    def db_url_async(self) -> str:
+        """Формирует асинхронный URL для подключения к PostgreSQL."""
+
+        return (
+            f'postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}'
             f'@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}'
         )
 
