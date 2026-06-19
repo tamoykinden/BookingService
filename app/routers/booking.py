@@ -1,18 +1,22 @@
 from math import ceil
 
-from fastapi import APIRouter, Depends, HTTPException, Query, Path
+from fastapi import APIRouter, Depends, HTTPException, Path, Query, Request
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app import crud
 from app.constants import BookingStatus
 from app.depencies import get_db
-from app.schemas.booking import BookingCreate, BookingResponse, BookingList
-from app import crud
+from app.schemas.booking import BookingCreate, BookingList, BookingResponse
+from app.tasks import process_booking
 
 router = APIRouter(
     prefix='/bookings',
     tags=['bookings'],
 )
 
+limiter = Limiter(key_func=get_remote_address)
 
 @router.post(
     '/',
@@ -20,7 +24,9 @@ router = APIRouter(
     status_code=201,
     summary='Создать бронирование',
 )
+@limiter.limit('5/minute')
 async def create_booking(
+    request: Request,
     data: BookingCreate,
     db: AsyncSession = Depends(get_db),
 ):
@@ -31,6 +37,7 @@ async def create_booking(
     """
 
     booking = await crud.create_booking(db, data)
+    process_booking.delay(booking.id)
     return booking
 
 

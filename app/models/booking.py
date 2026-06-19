@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String, DateTime, Enum as SQLEnum
+from sqlalchemy import Column, DateTime
+from sqlalchemy import Enum as SQLEnum
+from sqlalchemy import Integer, String
 from sqlalchemy.sql import func
 
 from app.constants import BookingStatus

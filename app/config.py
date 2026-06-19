@@ -39,13 +39,13 @@ class Settings(BaseSettings):
     def celery_broker_url(self) -> str:
         """Формирует URL для Celery брокера (Redis)."""
 
-        return f'redis://{self.REDIS_HOST}:{self.REDIS_PORT}/0'
+        return f'redis://{self.REDIS_HOST}:{self.REDIS_PORT}/1'
 
     @property
     def redis_result_url(self) -> str:
         """Формирует URL для Celery result backend (Redis)."""
 
-        return f'redis://{self.REDIS_HOST}:{self.REDIS_PORT}/0'
+        return f'redis://{self.REDIS_HOST}:{self.REDIS_PORT}/1'
 
     class Config:
         env_file = '.env'
