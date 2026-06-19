@@ -1,4 +1,4 @@
-.PHONY: dev worker test lint
+.PHONY: dev worker test lint docker-up docker-down
 
 VENV := .venv
 BIN := $(VENV)/bin
@@ -14,3 +14,9 @@ test:
 
 lint:
 	$(BIN)/flake8 app/
+
+docker-up:
+	docker-compose up --build -d
+
+docker-down:
+	docker-compose down
