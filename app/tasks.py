@@ -68,7 +68,7 @@ def process_booking(self, booking_id: int):
             logger.info(json.dumps({
                 'event': 'booking_already_processed',
                 'booking_id': booking_id,
-                'status': booking.status.value,
+                'status': booking.status,
             }))
             return
 

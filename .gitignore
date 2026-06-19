@@ -28,3 +28,8 @@ alembic/__pycache__/
 
 # Тесты
 .pytest_cache/
+.coverage
+htmlcov/
+*.sqlite3
+*.db
+tests/.env.test
