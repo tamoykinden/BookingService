@@ -18,7 +18,7 @@ class BookingCreate(BaseModel):
         max_length=255,
         description='Имя клиента',
     )
-    datetime: datetime = Field(
+    meeting_time: datetime = Field(
         ...,
         description='Желаемые дата и время встречи',
     )
@@ -39,7 +39,7 @@ class BookingResponse(BaseModel):
 
     id: int
     name: str
-    datetime: datetime
+    meeting_time: datetime
     service_type: str
     status: BookingStatus
     created_at: datetime

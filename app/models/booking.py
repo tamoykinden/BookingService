@@ -16,7 +16,7 @@ class Booking(Base):
 
     id = Column(Integer, primary_key=True, index=True, comment='ID')
     name = Column(String(255), nullable=False, comment='Имя клиента')
-    datetime = Column(DateTime(timezone=True), nullable=False, comment='Дата и время встречи')
+    meeting_time = Column(DateTime(timezone=True), nullable=False, comment='Желаемые дата и время встречи')
     service_type = Column(String(100), nullable=False, comment='Тип услуги')
     status = Column(
         SQLEnum(BookingStatus),

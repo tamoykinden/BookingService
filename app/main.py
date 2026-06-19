@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from app.routers.booking import router as bookings_router
 
 app = FastAPI(
     title='Booking Service',
@@ -7,6 +8,7 @@ app = FastAPI(
     version='1.0.0',
 )
 
+app.include_router(bookings_router)
 
 @app.get('/health')
 async def health_check():
