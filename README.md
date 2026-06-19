@@ -33,8 +33,11 @@ cp .env.example .env
 ### 3. Запустить все сервисы
 
 ```bash
+# С логами (видно процесс запуска)
 docker-compose up --build
-```
+
+# Без логов (в фоне)
+docker-compose up --build -d
 
 Поднимутся:
 - **API** — http://localhost:8000
