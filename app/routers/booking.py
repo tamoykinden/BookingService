@@ -37,7 +37,7 @@ async def create_booking(
     """
 
     booking = await crud.create_booking(db, data)
-    process_booking.delay(booking.id)
+    # process_booking.delay(booking.id)
     return booking
 
 

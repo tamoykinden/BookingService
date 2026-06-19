@@ -72,7 +72,7 @@ def process_booking(self, booking_id: int):
             }))
             return
 
-        time.sleep(0.5)
+        time.sleep(10)
 
         if random.random() < 0.15:
             booking.status = BookingStatus.FAILED
